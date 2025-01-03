@@ -36,6 +36,4 @@ jobs:
 
       - name: Deploy to Lambda
         run: |
-          cargo lambda deploy \
-            --binary-name job-trend-analyzer-api-cargo-lambda \
-            --enable-function-url 
+          cargo lambda deploy
