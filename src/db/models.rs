@@ -1,9 +1,8 @@
-use diesel::prelude::*;
 use chrono::NaiveDateTime;
+use serde::{Deserialize, Serialize};
+use sqlx::FromRow;
 
-#[derive(Queryable, Selectable)]
-#[diesel(table_name = crate::db::schema::results)]
-#[diesel(check_for_backend(diesel::pg::Pg))]
+#[derive(Serialize, Deserialize, FromRow)]
 pub struct Result {
     pub id: i32,
     pub url: String,
@@ -13,9 +12,7 @@ pub struct Result {
     pub count: i32,
 }
 
-#[derive(Queryable, Selectable)]
-#[diesel(table_name = crate::db::schema::targets)]
-#[diesel(check_for_backend(diesel::pg::Pg))]
+#[derive(Serialize, Deserialize, FromRow)]
 pub struct Target {
     pub id: i32,
     pub url: String,
