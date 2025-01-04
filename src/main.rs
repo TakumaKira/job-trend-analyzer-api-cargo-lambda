@@ -7,6 +7,8 @@ use futures::future;
 /// There are some code example in the following URLs:
 /// - https://github.com/awslabs/aws-lambda-rust-runtime/tree/main/examples
 async fn function_handler(_event: Request) -> Result<Response<Body>, Error> {
+    tracing_subscriber::fmt::init();
+
     let pool = db::connect::establish_connection().await;
     let targets = repository::target::get_targets(&pool).await?;
 
