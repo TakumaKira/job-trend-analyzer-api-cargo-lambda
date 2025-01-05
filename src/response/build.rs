@@ -1,6 +1,6 @@
 use futures::future;
 use sqlx::PgPool;
-use crate::{db::models::Target, repository, response::models::{ResponseItem, ResultItem}};
+use crate::{db::models::Target, repository::result::get_result, response::models::{ResponseItem, ResultItem}};
 
 pub async fn build_response(pool: PgPool, targets: Vec<Target>) -> Vec<ResponseItem> {
     future::join_all(
@@ -8,7 +8,7 @@ pub async fn build_response(pool: PgPool, targets: Vec<Target>) -> Vec<ResponseI
             let target_url = target.url.clone();
             let pool = pool.clone();
             async move {
-                let results = repository::result::get_result(&pool, target_url)
+                let results = get_result(&pool, target_url)
                     .await
                     .unwrap_or_default();
                 

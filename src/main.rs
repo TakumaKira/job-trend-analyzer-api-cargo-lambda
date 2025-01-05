@@ -13,7 +13,8 @@ async fn function_handler(_event: Request) -> Result<Response<Body>, Error> {
 
     let response_data = build_response(pool, targets).await;
 
-    let json_string = serde_json::to_string_pretty(&response_data)?;
+    let json_string = serde_json::to_string_pretty(&response_data)
+        .expect("Failed to serialize response data");
 
     Ok(Response::builder()
         .status(200)

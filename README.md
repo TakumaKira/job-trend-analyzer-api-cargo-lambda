@@ -7,11 +7,13 @@ Before examing this project, you need to setup your terminal to be able to run `
 
 1. Install [Rust](https://www.rust-lang.org/tools/install)
 2. Install [Cargo Lambda](https://www.cargo-lambda.info/guide/getting-started.html)
+3. (For local development) Prepare .env file with DATABASE_URL, which is the connection string to your database.
+(For AWS Lambda) Prepare AWS_DB_SECRETS_NAME, which is the name of the secret in AWS Secrets Manager. The secret should contain username, password, host, port, dbname.
 
 ## Run this app
 
 ```bash
-cargo lambda watch
+LOCAL=true cargo lambda watch
 ```
 
 From another terminal, run the following command to test the app:
