@@ -2,7 +2,7 @@ name: Deploy Lambda
 
 on:
   push:
-    branches: [ main, feature/serve-data ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
   workflow_dispatch:
