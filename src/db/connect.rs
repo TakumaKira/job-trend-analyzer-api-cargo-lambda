@@ -24,7 +24,6 @@ pub async fn establish_connection() -> PgPool {
         .expect("Failed to get secret")
     )
         .expect("Failed to parse secrets JSON");
-    println!("secrets: {:?}", secrets);
 
     let database_url = format!("postgres://{}:{}@{}:{}/{}", secrets.username, secrets.password, secrets.host, secrets.port, secrets.dbname);
 
