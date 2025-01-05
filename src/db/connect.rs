@@ -10,7 +10,7 @@ struct DbSecrets {
     username: String,
     password: String,
     host: String,
-    port: String,
+    port: i32,
     dbname: String,
 }
 
