@@ -34,6 +34,7 @@ You can test another API Gateway request by editing the file or copying this fil
     - DB_HOST: Your database's endpoint
     - DB_NAME: Your database's name
     - DB_PORT: Your database's port(highly likely `5432` as this app uses PostgreSQL)
+    - ALLOWED_FRONTEND_ORIGINS: Provide frontend origins to allow access with comma separated strings. If the frontend that has an origin it does not include send request to this API, browsers will reject the response with CORS error.
 - Your function have access to the following:
     - Your database(e.g. in the same VPC if your database don't have public endpoint for the sake of security)
     - AWS's Secret Manager service(e.g. VPC endpoint or internet access)
