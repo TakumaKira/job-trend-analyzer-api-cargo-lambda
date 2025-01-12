@@ -27,8 +27,6 @@ fn is_origin_allowed(origin: &str) -> bool {
 /// There are some code example in the following URLs:
 /// - https://github.com/awslabs/aws-lambda-rust-runtime/tree/main/examples
 async fn function_handler(event: Request) -> Result<Response<Body>, Error> {
-    tracing_subscriber::fmt::init();
-
     info!(method = ?event.method(), "Handling request");
     
     // Check origin header
