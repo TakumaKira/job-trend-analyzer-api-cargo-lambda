@@ -24,3 +24,16 @@ cargo lambda invoke --data-file fixtures/apigw-request-base.json
 
 The request data file is basically a copy from [the AWS official fixture](https://github.com/awslabs/aws-lambda-rust-runtime/blob/main/lambda-events/src/fixtures/example-apigw-request.json).
 You can test another API Gateway request by editing the file or copying this file and modify it.
+
+## Deploy this app
+
+### Things you need to deploy this app to AWS
+
+- Your function needs to have the following environment variables.
+    - AWS_DB_SECRETS_NAME: Secret name on Secret Manager which contains `username` and `password` of your database.
+    - DB_HOST: Your database's endpoint
+    - DB_NAME: Your database's name
+    - DB_PORT: Your database's port(highly likely `5432` as this app uses PostgreSQL)
+- Your function have access to the following:
+    - Your database(e.g. in the same VPC if your database don't have public endpoint for the sake of security)
+    - AWS's Secret Manager service(e.g. VPC endpoint or internet access)
