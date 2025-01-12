@@ -1,6 +1,7 @@
 use sqlx::postgres::PgPoolOptions;
 use sqlx::PgPool;
 use std::env;
+use percent_encoding::{utf8_percent_encode, NON_ALPHANUMERIC};
 use crate::aws_secrets_manager::get_secret::get_secret;
 use crate::db::models::DbSecrets;
 
@@ -32,9 +33,10 @@ pub async fn establish_connection() -> PgPool {
         )
             .expect("Failed to parse secrets JSON");
 
+        let encoded_password = utf8_percent_encode(&secrets.password, NON_ALPHANUMERIC).to_string();
         format!("postgres://{}:{}@{}:{}/{}", 
             secrets.username, 
-            secrets.password, 
+            encoded_password, 
             host, 
             port, 
             dbname
