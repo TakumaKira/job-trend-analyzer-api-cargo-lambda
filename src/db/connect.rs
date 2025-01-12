@@ -16,6 +16,12 @@ pub async fn establish_connection() -> PgPool {
         env::var("DATABASE_URL")
             .expect("DATABASE_URL must be set in local environment")
     } else {
+        let host = env::var("DB_HOST")
+            .expect("DB_HOST must be set");
+        let port = env::var("DB_PORT")
+            .expect("DB_PORT must be set");
+        let dbname = env::var("DB_NAME")
+            .expect("DB_NAME must be set");
         let aws_secret_name = env::var("AWS_DB_SECRETS_NAME")
             .expect("AWS_DB_SECRETS_NAME must be set");
         
@@ -29,9 +35,9 @@ pub async fn establish_connection() -> PgPool {
         format!("postgres://{}:{}@{}:{}/{}", 
             secrets.username, 
             secrets.password, 
-            secrets.host, 
-            secrets.port, 
-            secrets.dbname
+            host, 
+            port, 
+            dbname
         )
     };
 
